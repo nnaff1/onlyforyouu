@@ -128,14 +128,20 @@ export default function ConfessionPage() {
                       {item.isFinal && (
                         <div className="flex flex-col gap-5 items-center">
                           <button onClick={(e) => { e.stopPropagation(); setIsAccepted(true); }} className="w-full py-3.5 bg-white text-black font-bold rounded-xl hover:scale-105 transition-all">MAUUU</button>
-                          <button 
-                            onMouseEnter={moveButton} 
-                            onClick={(e) => { e.stopPropagation(); setIsRejected(true); }} 
-                            style={{ transform: `translate(${noButtonPos.x}px, ${noButtonPos.y}px)` }}
-                            className="w-1/2 py-2 bg-[#1a1a1a] text-gray-600 rounded-lg text-sm transition-all duration-100"
-                          >
-                            GAMAU
-                          </button>
+                    <button 
+                      // Gunakan onMouseMove biar lebih responsif daripada onMouseEnter
+                      onMouseMove={moveButton} 
+                      // Biar pas diklik nggak terjadi apa-apa
+                      onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
+                      style={{ 
+                        transform: `translate(${noButtonPos.x}px, ${noButtonPos.y}px)`,
+                        // Tetap bisa dideteksi mouse tapi gak bisa diklik aksi
+                        transition: 'transform 0.1s ease-out'
+                      }}
+                      className="w-1/2 py-2 bg-[#1a1a1a] text-gray-600 rounded-lg text-sm cursor-default"
+                    >
+                      GAMAU
+                    </button>
                         </div>
                       )}
                     </div>
